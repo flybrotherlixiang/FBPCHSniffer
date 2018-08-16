@@ -21,7 +21,7 @@ module Sniffer
       ]
 
       sourceObjectFiles = [
-        "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/Contacts.build/Debug-iphonesimulator/Contacts.build/Objects-normal/x86_64/QQPimEngine.o",
+        # "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/Contacts.build/Debug-iphonesimulator/Contacts.build/Objects-normal/x86_64/QQPimEngine.o",
         "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/Contacts.build/Debug-iphonesimulator/Contacts.build/Objects-normal/x86_64/QQPimEngineAccountService.o",
 
         "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/Contacts.build/Debug-iphonesimulator/Contacts.build/Objects-normal/x86_64/QQContactBindingViewController.o",
@@ -49,7 +49,6 @@ module Sniffer
       }
 
       pretty_print_dependency_infos symbolDependencyInfosMapping
-      # checkRelation(@headerO, @sourceO)
       # $logger.fatal '123321 logger fatal'.red
     end
 
@@ -58,19 +57,7 @@ module Sniffer
     # return an array of referenced symbols from headerObjectFile to targetObjectFile
     def checkRelation(headerObjectFile, targetObjectFile)
       targetUndefinedSymbols = SymbolHandler.get_undefined targetObjectFile
-      # puts sourceUndefinedSymbols
-      # sourceUndefinedSymbols = sourceUndefinedSymbols.lines.map(&:chomp)
-      # puts sourceUndefinedSymbols.count
-      # puts sourceUndefinedSymbols
-      # sourceUndefinedSymbols = ["123", "333", "456"]
-
       headerDefinedSymbols = SymbolHandler.get_defined headerObjectFile
-      # puts sourceDefinedSymbols
-      # sourceDefinedSymbols = sourceDefinedSymbols.lines.map(&:chomp)
-      # puts sourceDefinedSymbols.count
-      # puts sourceDefinedSymbols
-      # sourceDefinedSymbols = ["123", "444", "456"]
-
       intersections = headerDefinedSymbols & targetUndefinedSymbols
       puts "intersections are #{intersections}".light_blue
       return intersections
@@ -83,8 +70,11 @@ module Sniffer
         puts ">>>>>>>>>>>>Showing dependency of #{headerObjectFile}:".yellow
         puts "referenced by #{infos.count} file".green
         infos.each { |info|
-          puts "referer: #{info.fileFullPath}".light_blue
+          puts "referer:".light_blue
+          puts "name: #{info.fileFullPath}".light_blue
+          puts "#{info.referencedSymbols.count} symbols used: #{info.referencedSymbols}".light_blue
         }
+        puts
       end
     end
     private :pretty_print_dependency_infos
