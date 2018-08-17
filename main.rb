@@ -6,6 +6,7 @@ require 'rubygems'
 require 'commander/import'
 require 'sniffer'
 require 'Logger/logger'
+require 'terminal-notifier'
 
 module Sniffer
 
@@ -25,12 +26,24 @@ module Sniffer
     c.action do |args, options|
       headerO = options.headerO
       sourceO = options.sourceO
-      puts "header are #{headerO}"
-      puts "source are #{sourceO}"
+      # puts "header are #{headerO}"
+      # puts "source are #{sourceO}"
 
       sniffer = Sniffer.new(headerO, sourceO)
       sniffer.sniff
-      # Do something or c.when_called Fbpchsniffer::Commands::Sniff
+
+      TerminalNotifier.notify('finish sniffing', :title => 'PCHSniffer')
+    end
+  end
+
+  command :test do |c|
+    c.action do |args, options|
+      unqualifiedHeaders = ["foo.c", "bar.m"]
+      unqualifiedHeaderRates = [10, 15]
+      unqualifiedHeaders.each_with_index do |unqualifiedHeader, index|
+        puts unqualifiedHeader.red
+        puts ("#{unqualifiedHeaderRates[index]} %").red
+      end
     end
   end
 

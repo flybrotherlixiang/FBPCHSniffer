@@ -16,18 +16,29 @@ module Sniffer
 
     def sniff
       headerObjectFiles = [
-        "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/Contacts.build/Debug-iphonesimulator/Contacts.build/Objects-normal/x86_64/QQPimConst.o",
-        "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/Contacts.build/Debug-iphonesimulator/Contacts.build/Objects-normal/x86_64/QQContactsContactListViewController.o"
+        # "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/Contacts.build/Debug-iphonesimulator/Contacts.build/Objects-normal/x86_64/QQPimConst.o",
+        # "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/Contacts.build/Debug-iphonesimulator/Contacts.build/Objects-normal/x86_64/QQContactsContactListViewController.o"
+
+        "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/MSFImagePool.o",
+        "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/Logger.o",
+        "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/UIViewControllerAdditions.o",
+        "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/QDevice.o",
+        "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/QQDynamicDeviceInfo.o",
+        "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/QQBinaryPlistAddition.o",
+        "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/QQThread+runMode.h.o",
+        "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/QQThread+runMode.h.o"
+
       ]
 
-      sourceObjectFiles = [
-        # "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/Contacts.build/Debug-iphonesimulator/Contacts.build/Objects-normal/x86_64/QQPimEngine.o",
-        "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/Contacts.build/Debug-iphonesimulator/Contacts.build/Objects-normal/x86_64/QQPimEngineAccountService.o",
+      # sourceObjectFiles = [
+      #   # "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/Contacts.build/Debug-iphonesimulator/Contacts.build/Objects-normal/x86_64/QQPimEngine.o",
+      #   "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/Contacts.build/Debug-iphonesimulator/Contacts.build/Objects-normal/x86_64/QQPimEngineAccountService.o",
 
-        "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/Contacts.build/Debug-iphonesimulator/Contacts.build/Objects-normal/x86_64/QQContactBindingViewController.o",
-        "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/Contacts.build/Debug-iphonesimulator/Contacts.build/Objects-normal/x86_64/QQContactsFillVerifyCodeViewController.o"
-      ]
+      #   "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/Contacts.build/Debug-iphonesimulator/Contacts.build/Objects-normal/x86_64/QQContactBindingViewController.o",
+      #   "/Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/Contacts.build/Debug-iphonesimulator/Contacts.build/Objects-normal/x86_64/QQContactsFillVerifyCodeViewController.o"
+      # ]
 
+      sourceObjectFiles = get_source_files
 
       symbolDependencyInfosMapping = Hash.new
       headerObjectFiles.each { |headerObjectFile|
@@ -48,7 +59,9 @@ module Sniffer
         symbolDependencyInfosMapping[headerObjectFile] = symbolDependencyInfos
       }
 
-      pretty_print_dependency_infos symbolDependencyInfosMapping
+      print_summary(symbolDependencyInfosMapping, sourceObjectFiles)
+
+      # puts get_source_files.count
       # $logger.fatal '123321 logger fatal'.red
     end
 
@@ -59,25 +72,47 @@ module Sniffer
       targetUndefinedSymbols = SymbolHandler.get_undefined targetObjectFile
       headerDefinedSymbols = SymbolHandler.get_defined headerObjectFile
       intersections = headerDefinedSymbols & targetUndefinedSymbols
-      puts "intersections are #{intersections}".light_blue
+      # puts "intersections are #{intersections}".light_blue
       return intersections
     end
     private :checkRelation
 
-    def pretty_print_dependency_infos(symbolDependencyInfosMapping)
+    def print_summary(symbolDependencyInfosMapping, sourceObjectFiles)
+      unqualifiedHeaders = []
+      unqualifiedHeaderRates = []
       symbolDependencyInfosMapping.each do |headerObjectFile, infos|
-        # puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".yellow
         puts ">>>>>>>>>>>>Showing dependency of #{headerObjectFile}:".yellow
-        puts "referenced by #{infos.count} file".green
+
+        rate = (1.0 * infos.count / sourceObjectFiles.count * 100).round(2)
+        puts "referenced by #{infos.count} file in #{sourceObjectFiles.count} #{rate}%".green
         infos.each { |info|
           puts "referer:".light_blue
           puts "name: #{info.fileFullPath}".light_blue
           puts "#{info.referencedSymbols.count} symbols used: #{info.referencedSymbols}".light_blue
         }
+
+        if rate < 10
+          unqualifiedHeaders.push headerObjectFile
+          unqualifiedHeaderRates.push rate
+        end
+
+        puts
+      end
+
+      puts "unqualified headers:".red
+      unqualifiedHeaders.each_with_index do |unqualifiedHeader, index|
+        puts unqualifiedHeader.red
+        puts ("#{unqualifiedHeaderRates[index]} %").red
         puts
       end
     end
-    private :pretty_print_dependency_infos
+    private :print_summary
+
+    def get_source_files
+      cmdResult = `find /Users/jakeli/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/ -name "*.o"`
+      return cmdResult.lines.map(&:chomp)
+    end
+    private :get_source_files
 
   end
 

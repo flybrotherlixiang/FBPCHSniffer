@@ -5,6 +5,7 @@ GEM
     commander (4.4.6)
       highline (~> 1.7.2)
     highline (1.7.10)
+    terminal-notifier (2.0.0)
 
 PLATFORMS
   ruby
@@ -12,6 +13,7 @@ PLATFORMS
 DEPENDENCIES
   colorize
   commander
+  terminal-notifier
 
 BUNDLED WITH
    1.16.3
