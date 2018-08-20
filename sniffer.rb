@@ -15,16 +15,7 @@ module Sniffer
     end
 
     def sniff
-      headerObjectFiles = [
-        "#{ENV['HOME']}/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/MSFImagePool.o",
-        "#{ENV['HOME']}/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/Logger.o",
-        "#{ENV['HOME']}/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/UIViewControllerAdditions.o",
-        "#{ENV['HOME']}/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/QDevice.o",
-        "#{ENV['HOME']}/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/QQDynamicDeviceInfo.o",
-        "#{ENV['HOME']}/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/QQBinaryPlistAddition.o",
-        "#{ENV['HOME']}/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/QQThread+runMode.h.o",
-      ]
-
+      headerObjectFiles = get_header_files
       sourceObjectFiles = get_source_files
 
       symbolDependencyInfosMapping = Hash.new
@@ -88,6 +79,19 @@ module Sniffer
       end
     end
     private :print_summary
+
+    def get_header_files
+      return [
+        "#{ENV['HOME']}/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/MSFImagePool.o",
+        "#{ENV['HOME']}/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/Logger.o",
+        "#{ENV['HOME']}/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/UIViewControllerAdditions.o",
+        "#{ENV['HOME']}/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/QDevice.o",
+        "#{ENV['HOME']}/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/QQDynamicDeviceInfo.o",
+        "#{ENV['HOME']}/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/QQBinaryPlistAddition.o",
+        "#{ENV['HOME']}/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/QQThread+runMode.h.o",
+      ]
+    end
+    private :get_header_files
 
     def get_source_files
       cmdResult = `find #{ENV['HOME']}/Library/Developer/Xcode/DerivedData/QQMSFContact-eybkhozubmrualfrofgseypggvxs/Build/Intermediates.noindex/QQMainProject.build/Debug-iphonesimulator/QQMainProject.build/Objects-normal/x86_64/ -name "*.o"`
