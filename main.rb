@@ -21,13 +21,11 @@ module Sniffer
     c.summary = ''
     c.description = ''
     c.example 'description', 'command example'
-    c.option '--headerO STRING', String, 'Some switch that does something'
-    c.option '--sourceO STRING', String, 'Some switch that does something'
+    # c.option '--headerO STRING', String, 'Some switch that does something'
+    # c.option '--sourceO STRING', String, 'Some switch that does something'
     c.action do |args, options|
       headerO = options.headerO
       sourceO = options.sourceO
-      # puts "header are #{headerO}"
-      # puts "source are #{sourceO}"
 
       sniffer = Sniffer.new(headerO, sourceO)
       sniffer.sniff
